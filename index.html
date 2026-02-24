@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GG Blueprint — Get Better at Games</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #faf8f3;
+      --bg2:      #f2ede3;
+      --bg3:      #e8e1d3;
+      --ink:      #1a1a2e;
+      --ink2:     #3d3d56;
+      --muted:    #7a7a96;
+      --green:    #1f7a5c;
+      --green-lt: #e6f5ef;
+      --amber:    #e07b2a;
+      --amber-lt: #fdf0e4;
+      --sky:      #2d6fa3;
+      --sky-lt:   #e4f0f9;
+      --rose:     #c44569;
+      --rose-lt:  #fce8ef;
+      --card:     #ffffff;
+      --shadow:   rgba(26,26,46,0.08);
+      --radius:   18px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 400;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,248,243,0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--bg3);
+      padding: 1rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 38px; height: 38px;
+      background: var(--green);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .logo-text {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--ink);
+    }
+
+    .logo-text span { color: var(--green); }
+
+    nav ul {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--ink2);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--green); }
+
+    .nav-cta {
+      background: var(--green) !important;
+      color: #fff !important;
+      padding: 0.55rem 1.4rem;
+      border-radius: 50px;
+      font-size: 0.85rem !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+
+    .nav-cta:hover { background: #165c43 !important; transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 5rem 3rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      min-height: 88vh;
+    }
+
+    .hero-left { animation: fadeUp 0.7s ease both; }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--green-lt);
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--ink2);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-green {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(31,122,92,0.3);
+    }
+
+    .btn-green:hover { background: #165c43; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(31,122,92,0.35); }
+
+    .btn-outline {
+      display: inline-block;
+      border: 2px solid var(--bg3);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.83rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .trust-avatars {
+      display: flex;
+    }
+
+    .trust-avatars span {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      margin-left: -8px;
+      color: #fff;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      animation: fadeUp 0.7s 0.15s ease both;
+    }
+
+    .hero-card-main {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: 0 8px 40px var(--shadow);
+      border: 1px solid var(--bg3);
+    }
+
+    .hero-card-main h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .game-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      margin: 0.25rem;
+    }
+
+    .hero-mini-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .mini-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 20px var(--shadow);
+      border: 1px solid var(--bg3);
+    }
+
+    .mini-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .mini-card .mc-title { font-size: 0.88rem; font-weight: 800; color: var(--ink); margin-bottom: 0.2rem; }
+    .mini-card .mc-text { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── WHAT IS COACHING ── */
+    #explainer {
+      background: var(--green);
+      padding: 5rem 3rem;
+    }
+
+    .explainer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .explainer-inner h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .explainer-inner h2 em {
+      font-style: italic;
+      color: #b2f0d8;
+    }
+
+    .explainer-inner p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .explainer-faq {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      background: rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      cursor: pointer;
+    }
+
+    .faq-q {
+      font-weight: 800;
+      color: #fff;
+      font-size: 0.92rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .faq-q .toggle {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .faq-item:hover .toggle { background: rgba(255,255,255,0.3); }
+
+    .faq-a {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+      margin-top: 0.75rem;
+      display: none;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .toggle { background: #fff; color: var(--green); }
+
+    /* ── GAMES ── */
+    #games {
+      padding: 5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-badge {
+      display: inline-block;
+      background: var(--amber-lt);
+      color: var(--amber);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 50px;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-badge.sky { background: var(--sky-lt); color: var(--sky); }
+    .section-badge.green { background: var(--green-lt); color: var(--green); }
+    .section-badge.rose { background: var(--rose-lt); color: var(--rose); }
+
+    h2.sh {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .sub-text {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.75;
+      max-width: 560px;
+      margin-bottom: 3rem;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .game-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      border: 2px solid transparent;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px var(--shadow);
+    }
+
+    .game-emoji { font-size: 2.2rem; margin-bottom: 1rem; display: block; }
+
+    .game-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .game-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.2rem 0.65rem;
+      border-radius: 50px;
+      margin-bottom: 0.85rem;
+    }
+
+    .game-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    .beginner-note {
+      margin-top: 1rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* ── WHO IS THIS FOR ── */
+    #for-who {
+      background: var(--bg2);
+      padding: 5rem 3rem;
+    }
+
+    .for-who-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .audience-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 20px var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .audience-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+    }
+
+    .audience-card.c1::before { background: var(--green); }
+    .audience-card.c2::before { background: var(--amber); }
+    .audience-card.c3::before { background: var(--sky); }
+
+    .audience-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+
+    .audience-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .audience-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+    .audience-check {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .check-item {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .check-item::before {
+      content: '✓';
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--green-lt);
+      color: var(--green);
+      font-size: 0.7rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: 5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 3rem;
+      box-shadow: 0 8px 40px var(--shadow);
+      border: 1px solid var(--bg3);
+    }
+
+    .about-profile {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--bg3);
+    }
+
+    .profile-avatar {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--sky));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .profile-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .profile-title {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
+    .cred-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--bg2);
+    }
+
+    .cred-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .cred-icon-wrap {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .cred-row-title {
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .cred-row-text { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── TEAM CONSULTING ── */
+    #consulting {
+      background: var(--ink);
+      padding: 5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #consulting::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(31,122,92,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(45,111,163,0.1) 0%, transparent 50%);
+    }
+
+    .consulting-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .consulting-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-bottom: 3.5rem;
+    }
+
+    .consulting-header h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .consulting-header h2 em {
+      font-style: italic;
+      color: #6ee7b7;
+    }
+
+    .consulting-header p {
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
+    .consulting-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .consult-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .consult-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(110,231,183,0.3);
+    }
+
+    .consult-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+
+    .consult-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .consult-tag {
+      display: inline-block;
+      background: rgba(110,231,183,0.15);
+      color: #6ee7b7;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.7rem;
+      border-radius: 50px;
+      margin-bottom: 0.85rem;
+    }
+
+    .consult-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    .consult-features {
+      list-style: none;
+      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .consult-features li {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .consult-features li::before {
+      content: '→';
+      color: #6ee7b7;
+      font-size: 0.75rem;
+    }
+
+    .consult-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 2rem 2.5rem;
+    }
+
+    .consult-cta-row p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .consult-cta-row strong { color: #fff; }
+
+    .btn-white {
+      display: inline-block;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 0.88rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-white:hover { background: #e8f5ef; transform: translateY(-1px); }
+
+    /* ── PRICING ── */
+    #pricing {
+      background: var(--bg2);
+      padding: 5rem 3rem;
+    }
+
+    .pricing-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .plan {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 20px var(--shadow);
+      border: 2px solid transparent;
+      position: relative;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    }
+
+    .plan:hover { transform: translateY(-4px); box-shadow: 0 12px 40px var(--shadow); }
+
+    .plan.featured {
+      border-color: var(--green);
+      background: #fff;
+    }
+
+    .plan-best {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-price {
+      font-family: 'Fraunces', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1;
+    }
+
+    .plan-price sub {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+      vertical-align: baseline;
+    }
+
+    .plan-tagline {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0.75rem 0 1.75rem;
+    }
+
+    .plan-list {
+      list-style: none;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .plan-list li {
+      font-size: 0.88rem;
+      color: var(--ink2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .plan-list li .chk {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--green-lt);
+      color: var(--green);
+      font-size: 0.65rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .btn-plan {
+      display: block;
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-plan.green { background: var(--green); color: #fff; box-shadow: 0 4px 16px rgba(31,122,92,0.3); }
+    .btn-plan.green:hover { background: #165c43; transform: translateY(-1px); }
+    .btn-plan.outline { border: 2px solid var(--bg3); color: var(--ink); }
+    .btn-plan.outline:hover { border-color: var(--green); color: var(--green); }
+
+    /* ── TESTIMONIALS ── */
+    #reviews {
+      padding: 5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .review-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      box-shadow: 0 4px 20px var(--shadow);
+      border: 1px solid var(--bg3);
+    }
+
+    .stars { font-size: 0.9rem; color: var(--amber); letter-spacing: 0.1em; margin-bottom: 1rem; }
+
+    .review-text {
+      font-size: 0.92rem;
+      color: var(--ink2);
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .reviewer-av {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .reviewer-name { font-weight: 800; font-size: 0.88rem; }
+    .reviewer-sub { font-size: 0.76rem; color: var(--muted); margin-top: 0.1rem; }
+
+    /* ── CTA ── */
+    #cta {
+      padding: 5rem 3rem;
+      background: linear-gradient(135deg, #1f7a5c 0%, #165c43 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .cta-inner h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .cta-inner p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-white-solid {
+      display: inline-block;
+      background: #fff;
+      color: var(--green);
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-white-solid:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+    .btn-white-outline {
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.88rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-white-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .footer-logo .logo-mark { background: var(--green); }
+
+    .footer-logo .logo-text { color: #fff; }
+
+    .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+
+    .footer-links a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: #6ee7b7; }
+
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); font-weight: 600; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      #hero { grid-template-columns: 1fr; padding: 4rem 1.5rem; min-height: auto; gap: 2.5rem; }
+      .games-grid, .audience-grid, .pricing-grid, .reviews-grid, .consulting-options { grid-template-columns: 1fr; }
+      .consulting-header { grid-template-columns: 1fr; gap: 2rem; }
+      #about { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+      .explainer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      section, #games, #for-who .for-who-inner, .pricing-inner, #reviews { padding-left: 1.5rem; padding-right: 1.5rem; }
+      #explainer, #for-who, #consulting, #pricing, #cta { padding: 4rem 1.5rem; }
+      .consult-cta-row { flex-direction: column; gap: 1.5rem; text-align: center; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-mark">🎮</div>
+    <div class="logo-text">GG <span>Blueprint</span></div>
+  </a>
+  <ul>
+    <li><a href="#games">Games</a></li>
+    <li><a href="#for-who">Who Is This For?</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#consulting">Team Consulting</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#cta" class="nav-cta">Get Started Free</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-left">
+    <div class="hero-pill">👋 New to gaming? You're in the right place.</div>
+    <h1>Your blueprint to actually getting <em>good</em> at games.</h1>
+    <p class="hero-sub">
+      Whether you just picked up your first controller or you've been grinding for years without progress — GG Blueprint gives you a real coach who knows how to teach. Not just good players. <strong>Real educators.</strong>
+    </p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-green">🎯 Book a Free Discovery Call</a>
+      <a href="#explainer" class="btn-outline">Wait, what is coaching?</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-avatars">
+        <span style="background:#1f7a5c; margin-left:0;">MK</span>
+        <span style="background:#e07b2a;">ZR</span>
+        <span style="background:#2d6fa3;">TP</span>
+        <span style="background:#c44569;">SL</span>
+      </div>
+      Coaching players of every skill level 🌟
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card-main">
+      <h3>🕹️ Games we coach</h3>
+      <div>
+        <span class="game-pill" style="background:#fdf0e4; color:#e07b2a;">🔫 Counter-Strike 2</span>
+        <span class="game-pill" style="background:#fce8ef; color:#c44569;">⚡ Valorant</span>
+        <span class="game-pill" style="background:#e8f0e4; color:#3a7a2a;">⚔️ WoW PvP</span>
+        <span class="game-pill" style="background:#e4f0f9; color:#2d6fa3;">🪂 PUBG</span>
+        <span class="game-pill" style="background:#fce8ef; color:#c44569;">🔺 Apex Legends</span>
+        <span class="game-pill" style="background:#f0e8fc; color:#7c3aed;">🦸 Marvel Rivals</span>
+      </div>
+      <p style="margin-top:1rem; font-size:0.82rem; color:var(--muted);">All experience levels welcome. Seriously — if you don't know what a "meta" is yet, that's totally fine.</p>
+    </div>
+    <div class="hero-mini-cards">
+      <div class="mini-card">
+        <div class="icon">🎓</div>
+        <div class="mc-title">Real Teaching Degree</div>
+        <div class="mc-text">A background in education means your progress is structured and intentional — not random.</div>
+      </div>
+      <div class="mini-card">
+        <div class="icon">🗺️</div>
+        <div class="mc-title">Your Personalized Plan</div>
+        <div class="mc-text">No copy-paste advice. Every session is built around where you are right now.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT IS COACHING EXPLAINER -->
+<section id="explainer">
+  <div class="explainer-inner">
+    <div>
+      <div class="section-badge" style="background:rgba(178,240,216,0.2); color:#b2f0d8; margin-bottom:0.75rem; display:inline-block; font-size:0.72rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:0.3rem 0.9rem; border-radius:50px;">New Here?</div>
+      <h2>Not sure what <em>gaming coaching</em> even is? No problem.</h2>
+      <p>Think of it like having a private tutor — but for video games. A coach watches how you play, figures out what's holding you back, and teaches you how to fix it. It's the fastest way to actually improve.</p>
+      <p>You don't need to be competitive or serious about gaming. Maybe you just want to stop losing to your friends, or you're curious about what all the fuss is about. We meet you exactly where you are.</p>
+      <a href="#about" class="btn-green" style="display:inline-block; text-decoration:none;">Learn about our approach</a>
+    </div>
+    <div class="explainer-faq">
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Do I need to be good already to get coaching? <span class="toggle">+</span></div>
+        <div class="faq-a">Absolutely not! Complete beginners are some of our favorite students. There are no bad habits to undo yet, and the improvement curve is incredibly rewarding. We start from zero if needed.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What does a session actually look like? <span class="toggle">+</span></div>
+        <div class="faq-a">Sessions happen over Discord with screen sharing. We'll play together, watch recordings of your games, and talk through specific skills. It's relaxed, friendly, and at your pace — not a bootcamp.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">I don't know any gaming terms. Is that okay? <span class="toggle">+</span></div>
+        <div class="faq-a">100% okay. We explain everything in plain language. Our coach has a degree in education specifically because teaching clearly — without jargon — is a real skill. We'll never make you feel dumb for asking.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">What makes this different from just watching YouTube? <span class="toggle">+</span></div>
+        <div class="faq-a">YouTube teaches you what to do in general. A coach tells you what YOU specifically are doing wrong and how to fix it. It's the difference between reading a recipe and having a chef in your kitchen with you.</div>
+      </div>
+      <div class="faq-item" onclick="this.classList.toggle('open')">
+        <div class="faq-q">Can I just try one session first? <span class="toggle">+</span></div>
+        <div class="faq-a">Yes! We offer a free 15-minute discovery call before anything else, plus individual drop-in sessions. There's no pressure to commit to a package right away.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GAMES -->
+<section id="games" style="padding:5rem 3rem; max-width:1200px; margin:0 auto;">
+  <div class="section-badge">Roster</div>
+  <h2 class="sh">Six games. One coach who <em>actually</em> teaches.</h2>
+  <p class="sub-text">Each game is different — and so is each player. Sessions are tailored to the specific game and your specific skill level, whether you're brand new or an experienced player who's hit a wall.</p>
+
+  <div class="games-grid">
+    <div class="game-card" style="border-color: #fde8c8;">
+      <span class="game-emoji">🔫</span>
+      <div class="game-name">Counter-Strike 2</div>
+      <div class="game-badge" style="background:#fdf0e4; color:#e07b2a;">Tactical FPS</div>
+      <p class="game-desc">The classic. We cover movement, aim fundamentals, map awareness, economy decisions, and team communication — at whatever pace works for you.</p>
+      <div class="beginner-note" style="background:#fdf0e4; color:#b85c1a;">🌱 Very beginner friendly</div>
+    </div>
+
+    <div class="game-card" style="border-color: #fce0ea;">
+      <span class="game-emoji">⚡</span>
+      <div class="game-name">Valorant</div>
+      <div class="game-badge" style="background:#fce8ef; color:#c44569;">Hero Shooter</div>
+      <p class="game-desc">Easier to jump into than CS. We'll teach you which agent to pick, how to use your abilities well, and the basics of winning rounds without stress.</p>
+      <div class="beginner-note" style="background:#fce8ef; color:#a03050;">🌟 Great starter game</div>
+    </div>
+
+    <div class="game-card" style="border-color: #d8ecd2;">
+      <span class="game-emoji">⚔️</span>
+      <div class="game-name">World of Warcraft PvP</div>
+      <div class="game-badge" style="background:#e6f5ef; color:#1f7a5c;">MMO Arena</div>
+      <p class="game-desc">WoW PvP has a steep learning curve. We break it down into digestible pieces — class basics, when to use abilities, and how to win Arena matches step by step.</p>
+      <div class="beginner-note" style="background:#e6f5ef; color:#1f6048;">📘 Deep but rewarding</div>
+    </div>
+
+    <div class="game-card" style="border-color: #d8e8f5;">
+      <span class="game-emoji">🪂</span>
+      <div class="game-name">PUBG</div>
+      <div class="game-badge" style="background:#e4f0f9; color:#2d6fa3;">Battle Royale</div>
+      <p class="game-desc">Landing spots, looting routes, knowing when to fight or run — survival games are all about decisions. We'll train your instincts from the ground up.</p>
+      <div class="beginner-note" style="background:#e4f0f9; color:#235490;">🎯 Decision-making focus</div>
+    </div>
+
+    <div class="game-card" style="border-color: #fce0e0;">
+      <span class="game-emoji">🔺</span>
+      <div class="game-name">Apex Legends</div>
+      <div class="game-badge" style="background:#fce8e8; color:#c44040;">Battle Royale</div>
+      <p class="game-desc">Fast, exciting, and a lot going on at once. We slow it down so you understand what's happening — movement, legend abilities, squad play, and positioning.</p>
+      <div class="beginner-note" style="background:#fce8e8; color:#a03030;">🚀 High energy, high reward</div>
+    </div>
+
+    <div class="game-card" style="border-color: #ede0fc;">
+      <span class="game-emoji">🦸</span>
+      <div class="game-name">Marvel Rivals</div>
+      <div class="game-badge" style="background:#f0e8fc; color:#7c3aed;">Hero Shooter</div>
+      <p class="game-desc">One of the newest and most exciting games on the list. Perfect for Marvel fans stepping into competitive gaming for the first time — very approachable.</p>
+      <div class="beginner-note" style="background:#f0e8fc; color:#6030b0;">✨ Great for newcomers</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IS THIS FOR -->
+<section id="for-who">
+  <div class="for-who-inner">
+    <div class="section-badge sky">Who Is This For?</div>
+    <h2 class="sh">There's no wrong reason to want to get better.</h2>
+    <p class="sub-text">Gaming coaching isn't just for pros. Here's who we work with every day:</p>
+
+    <div class="audience-grid">
+      <div class="audience-card c1">
+        <span class="audience-icon">👶</span>
+        <div class="audience-title">The Complete Beginner</div>
+        <p class="audience-desc">You just bought your first game or finally decided to take gaming seriously. You might not know where to even start — and that's exactly what we're here for.</p>
+        <div class="audience-check">
+          <div class="check-item">Never played a competitive game before</div>
+          <div class="check-item">Don't know any gaming terminology yet</div>
+          <div class="check-item">Want a patient, judgment-free guide</div>
+        </div>
+      </div>
+
+      <div class="audience-card c2">
+        <span class="audience-icon">😤</span>
+        <div class="audience-title">The Frustrated Player</div>
+        <p class="audience-desc">You've been playing for a while but you're stuck. You keep losing and don't know why. You've watched the YouTube videos and nothing sticks.</p>
+        <div class="audience-check">
+          <div class="check-item">Stuck at the same rank for months</div>
+          <div class="check-item">Watching guides but not improving</div>
+          <div class="check-item">Need someone to identify the real problem</div>
+        </div>
+      </div>
+
+      <div class="audience-card c3">
+        <span class="audience-icon">👨‍👩‍👧</span>
+        <div class="audience-title">Families & Social Players</div>
+        <p class="audience-desc">Maybe your kids are playing and you want to understand their world. Or you want to actually be able to play with friends instead of getting left behind every match.</p>
+        <div class="audience-check">
+          <div class="check-item">Parents wanting to connect with kids through gaming</div>
+          <div class="check-item">Friend groups who want to play together</div>
+          <div class="check-item">Anyone who just wants gaming to be fun again</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / COACH -->
+<section id="about">
+  <div>
+    <div class="section-badge green">Your Coach</div>
+    <h2 class="sh">A gamer who knows <em>how to teach</em> — not just how to play.</h2>
+    <p class="sub-text">
+      Lots of people are great at games. Very few know how to actually explain the game to someone else in a way that creates real, lasting improvement. That's the difference a teaching degree makes.
+    </p>
+    <p style="color:var(--muted); font-size:0.95rem; line-height:1.8; max-width:520px;">
+      I built GG Blueprint because I saw too many players getting generic advice that didn't stick. With a background in education, I know how to identify exactly where you're struggling, explain it clearly, and build a plan that actually moves the needle. Every player learns differently — and I adjust for you.
+    </p>
+  </div>
+
+  <div class="about-card">
+    <div class="about-profile">
+      <div class="profile-avatar">👨‍🏫</div>
+      <div>
+        <div class="profile-name">Your GG Blueprint Coach</div>
+        <div class="profile-title">🎓 B.Ed. Certified · 6-Game Specialist</div>
+      </div>
+    </div>
+
+    <div class="cred-row">
+      <div class="cred-icon-wrap" style="background:var(--green-lt);">🎓</div>
+      <div>
+        <div class="cred-row-title">Degree in Education</div>
+        <div class="cred-row-text">Formal training in how people learn, retain skills, and build habits — applied to every coaching session.</div>
+      </div>
+    </div>
+    <div class="cred-row">
+      <div class="cred-icon-wrap" style="background:var(--amber-lt);">🔍</div>
+      <div>
+        <div class="cred-row-title">Diagnostic-First Approach</div>
+        <div class="cred-row-text">We watch your gameplay before giving a single piece of advice. Fix the right thing, not just anything.</div>
+      </div>
+    </div>
+    <div class="cred-row">
+      <div class="cred-icon-wrap" style="background:var(--sky-lt);">💬</div>
+      <div>
+        <div class="cred-row-title">Jargon-Free Explanations</div>
+        <div class="cred-row-text">No assuming you know what "meta," "peaking," or "kiting" means. We explain everything in plain English.</div>
+      </div>
+    </div>
+    <div class="cred-row">
+      <div class="cred-icon-wrap" style="background:var(--rose-lt);">📋</div>
+      <div>
+        <div class="cred-row-title">Structured Progress Plans</div>
+        <div class="cred-row-text">Not random tips — a clear roadmap of what you're working on, week by week, with measurable checkpoints.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM CONSULTING -->
+<section id="consulting">
+  <div class="consulting-inner">
+    <div class="consulting-header">
+      <div>
+        <div style="display:inline-block; background:rgba(110,231,183,0.15); color:#6ee7b7; font-size:0.72rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:0.3rem 0.9rem; border-radius:50px; margin-bottom:0.75rem;">Team Services</div>
+        <h2>Consulting for <em>teams, schools, & orgs</em></h2>
+        <p>Whether you're building a high school esports program, managing a semi-pro roster, or running a workplace gaming event — we bring structure, strategy, and education-backed expertise to your whole group.</p>
+      </div>
+      <div style="padding-top:1rem;">
+        <p style="color:rgba(255,255,255,0.55); font-size:0.9rem; line-height:1.8;">Not sure which package fits? <strong style="color:#fff;">Every team engagement starts with a free consultation call</strong> where we learn about your group's goals, experience level, and timeline. No commitment, no pressure.</p>
+      </div>
+    </div>
+
+    <div class="consulting-options">
+      <div class="consult-card">
+        <span class="consult-icon">🏫</span>
+        <div class="consult-title">School & Youth Programs</div>
+        <div class="consult-tag">Ages 12–18</div>
+        <p class="consult-desc">Build or expand a high school esports program with proper coaching structure, game selection guidance, and educational framing for parents and administrators.</p>
+        <ul class="consult-features">
+          <li>Curriculum design for gaming clubs</li>
+          <li>Parent-friendly program materials</li>
+          <li>Game selection and onboarding</li>
+          <li>Group coaching sessions (any level)</li>
+          <li>Tournament preparation</li>
+        </ul>
+      </div>
+
+      <div class="consult-card">
+        <span class="consult-icon">🏆</span>
+        <div class="consult-title">Competitive Team Coaching</div>
+        <div class="consult-tag">Semi-pro & Amateur</div>
+        <p class="consult-desc">Your team has talent but lacks coordination, strategy, or communication. We diagnose the gaps, build team synergy, and prepare you for competition.</p>
+        <ul class="consult-features">
+          <li>Team VOD review sessions</li>
+          <li>Role-specific individual coaching</li>
+          <li>Communication & shotcalling drills</li>
+          <li>Meta strategy and game-planning</li>
+          <li>Scrim feedback & analysis</li>
+        </ul>
+      </div>
+
+      <div class="consult-card">
+        <span class="consult-icon">🏢</span>
+        <div class="consult-title">Corporate & Community Events</div>
+        <div class="consult-tag">Groups & Events</div>
+        <p class="consult-desc">Running a gaming event, team-building session, or community tournament? We provide coaching workshops, intro sessions, and event facilitation to keep everyone engaged and learning.</p>
+        <ul class="consult-features">
+          <li>Gaming intro workshops for newcomers</li>
+          <li>Tournament structure consulting</li>
+          <li>Live event coaching support</li>
+          <li>Group onboarding for new players</li>
+          <li>Custom content and materials</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="consult-cta-row">
+      <p><strong>All team engagements are custom quoted.</strong> Size of group, session frequency, and scope all factor in. Get in touch and we'll put together a proposal that fits your budget and goals. First call is always free.</p>
+      <a href="mailto:hello@ggblueprint.gg" class="btn-white">💬 Talk to Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-inner">
+    <div class="section-badge">Pricing</div>
+    <h2 class="sh">Simple, honest pricing. No tricks.</h2>
+    <p class="sub-text">Pick what works for where you are right now. You can always upgrade later — or just try a single session first. No subscriptions, no pressure.</p>
+
+    <div class="pricing-grid">
+      <div class="plan">
+        <div class="plan-name">Starter</div>
+        <div class="plan-price">$30 <sub>/ session</sub></div>
+        <p class="plan-tagline">One 60-minute session. Great for trying things out or solving one specific problem.</p>
+        <ul class="plan-list">
+          <li><span class="chk">✓</span> 1-hour coaching or VOD review</li>
+          <li><span class="chk">✓</span> Pre-session intake form</li>
+          <li><span class="chk">✓</span> Written recap & action items</li>
+          <li><span class="chk">✓</span> Any game on our roster</li>
+          <li><span class="chk">✓</span> No commitment required</li>
+        </ul>
+        <a href="#cta" class="btn-plan outline">Book a Session</a>
+      </div>
+
+      <div class="plan featured">
+        <div class="plan-best">⭐ Most Popular</div>
+        <div class="plan-name">Progress Bundle</div>
+        <div class="plan-price">$100 <sub>/ 4 sessions</sub></div>
+        <p class="plan-tagline">Four weekly sessions with a personalized improvement plan, tracking, and homework between sessions.</p>
+        <ul class="plan-list">
+          <li><span class="chk">✓</span> 4 × 60-minute sessions</li>
+          <li><span class="chk">✓</span> Custom improvement roadmap</li>
+          <li><span class="chk">✓</span> Weekly VOD review</li>
+          <li><span class="chk">✓</span> Discord access for questions</li>
+          <li><span class="chk">✓</span> Weekly progress report</li>
+          <li><span class="chk">✓</span> Session recordings</li>
+        </ul>
+        <a href="#cta" class="btn-plan green">Get Started</a>
+      </div>
+
+      <div class="plan">
+        <div class="plan-name">Full Access</div>
+        <div class="plan-price">$200 <sub>/ month</sub></div>
+        <p class="plan-tagline">For the player who's serious about consistent growth. Bi-weekly sessions, async support, and consulting access included.</p>
+        <ul class="plan-list">
+          <li><span class="chk">✓</span> 8 × 60-minute sessions / month</li>
+          <li><span class="chk">✓</span> Priority scheduling</li>
+          <li><span class="chk">✓</span> Unlimited VOD submissions</li>
+          <li><span class="chk">✓</span> Direct message support (M–F)</li>
+          <li><span class="chk">✓</span> Team consulting access</li>
+          <li><span class="chk">✓</span> Rank & skill guarantee review</li>
+        </ul>
+        <a href="#cta" class="btn-plan outline">Apply Now</a>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top:2rem; font-size:0.85rem; color:var(--muted); font-weight:600;">
+      🎁 Every new player gets a <strong style="color:var(--ink);">free 15-minute discovery call</strong> — no credit card, no commitment, no jargon.
+    </p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-badge sky">What Players Say</div>
+  <h2 class="sh">Real players. Real progress.</h2>
+  <p class="sub-text">From total beginners to frustrated veterans — here's how some of our players describe their experience.</p>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"I'm a mom who started playing Valorant with my teenage son. The coach made it so easy to understand — no judgment, no jargon. Now my son actually wants me in his matches!"</p>
+      <div class="reviewer">
+        <div class="reviewer-av" style="background:#c44569;">JL</div>
+        <div>
+          <div class="reviewer-name">JessL</div>
+          <div class="reviewer-sub">Valorant — Complete Beginner</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"I'd been stuck in Gold 2 for eight months. Two sessions in and I finally understood WHY I kept losing. My coach has a teaching degree and you can tell — the explanations actually make sense."</p>
+      <div class="reviewer">
+        <div class="reviewer-av" style="background:#e07b2a;">MK</div>
+        <div>
+          <div class="reviewer-name">MaverickKS</div>
+          <div class="reviewer-sub">Valorant — Gold → Platinum</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"We used GG Blueprint for our high school esports team and the difference was night and day. They structured practices, explained strategy in a way the kids actually absorbed, and we won our first regional."</p>
+      <div class="reviewer">
+        <div class="reviewer-av" style="background:#2d6fa3;">TR</div>
+        <div>
+          <div class="reviewer-name">Coach Rivera</div>
+          <div class="reviewer-sub">High School Esports Director</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <h2>Ready to actually start getting better?</h2>
+    <p>Book a free 15-minute discovery call. No pressure, no jargon, no judgment. Just a real conversation about where you are and where you want to go.</p>
+    <div class="cta-btns">
+      <a href="mailto:hello@ggblueprint.gg" class="btn-white-solid">🎯 Book My Free Call</a>
+      <a href="#pricing" class="btn-white-outline">See Pricing First</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="#">
+    <div class="logo-mark">🎮</div>
+    <div class="logo-text">GG <span>Blueprint</span></div>
+  </a>
+  <ul class="footer-links">
+    <li><a href="#games">Games</a></li>
+    <li><a href="#for-who">Who Is This For?</a></li>
+    <li><a href="#consulting">Team Consulting</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#cta">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 GG Blueprint. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
